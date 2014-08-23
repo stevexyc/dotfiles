@@ -84,8 +84,10 @@ set tm=500
 syntax enable
 
 " Solarized theme
-" let g:solarized_termcolors=16
-set background=light
+let g:solarized_termcolors=256
+set background=dark
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 colorscheme solarized
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -208,33 +210,4 @@ map <leader>sa :%s/
 
 " Delete All Blank Lines
 map <leader>bd :g/^$/d<cr>
-
-
-" Pathogen
-execute pathogen#infect()
-
-" Limelight Directives
-" let g:limelight_conceal_ctermfg = ''
-let g:limelight_conceal_ctermfg = 109
-
-" Plug
-call plug#begin('~/.vim/plugged')
-
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-
-call plug#end()
-
-
-" GOYO SETTINGS
-function! GoyoBefore()
-  Limelight
-endfunction
-
-function! GoyoAfter()
-  Limelight!
-endfunction
-
-let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-
 
