@@ -28,6 +28,10 @@ set nocompatible
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
+" set cursor line and cursor column
+set cursorline
+set cursorcolumn
+
 set wildmenu
 " Turn on WiLd menu
 
@@ -84,7 +88,7 @@ set tm=500
 syntax enable
 
 " Solarized theme
-" let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 set background=dark
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
@@ -135,7 +139,7 @@ vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
 " Relative number
-set relativenumber 
+set number 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
