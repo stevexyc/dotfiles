@@ -214,3 +214,8 @@ map <leader>sa :%s/
 " Delete All Blank Lines
 map <leader>bd :g/^$/d<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Find and Replace
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute pathogen#infect()
+
