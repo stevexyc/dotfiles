@@ -134,26 +134,59 @@ set wrap "Wrap lines
 " => AutoComplete
 """""""""""""""""""""""""""""""
 " auto complete bracket
-inoremap ( ()<Esc>:call BC_AddChar(")")<CR>i
-inoremap { {<CR>}<Esc>:call BC_AddChar("}")<CR><Esc>kA<CR>
-inoremap [ []<Esc>:call BC_AddChar("]")<CR>i
-inoremap " ""<Esc>:call BC_AddChar("\"")<CR>i
-" jump out of parenthesis
-inoremap <C-\> <Esc>:call search(BC_GetChar(), "W")<CR>a
-
-function! BC_AddChar(schar)
-  if exists("b:robstack")
-    let b:robstack = b:robstack . a:schar
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-P>"
   else
-    let b:robstack = a:schar
+    return "\<Tab>"
   endif
 endfunction
 
-function! BC_GetChar()
-  let l:char = b:robstack[strlen(b:robstack)-1]
-  let b:robstack = strpart(b:robstack, 0, strlen(b:robstack)-1)
-  return l:char
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i 
+inoremap { {<CR>}<Esc>O<TAB>
+autocmd Syntax html,viminoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap } <c-r>=ClosePair('}')<CR>
+inoremap " <c-r>=ClosePair('"')<CR>
+inoremap ' <c-r>=ClosePair("'")<CR>
+
+function ClosePair(char) 
+  if getline('.')[col('.') - 1] == a:char
+    return "\<Right>"
+  else 
+    return a:char
+  endif
 endfunction
+
+
+function CloseBracket()
+  if match(getline(line('.') + 1), '\s*}') < 0
+    return "\<CR>}"
+  else 
+    return "\<Esc>j0f}a"
+  endif
+endfunction
+
+function QuoteDelim(char)
+  let line = getline('.')
+  let col = col('.')
+  if line[col - 2] == "\\"
+    "Inserting a quoted quotation mark into the string
+    return a:char
+  elseif line[col - 1] == a:char
+    "Escaping out of the string
+    return "\<Right>"
+  else
+    "Starting a string
+    return a:char.a:char."\<Esc>i"
+  endif
+endfunction
+
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
