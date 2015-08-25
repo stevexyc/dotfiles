@@ -128,7 +128,7 @@ set tw=500
 
 set ai "Autoindent
 set si "Smart lines
-set wrap "Wrap lines
+set nowrap "dont Wrap lines
 
 """"""""""""""""""""""""""""""
 " => AutoComplete
@@ -254,9 +254,10 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
-" """"""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " " Always show the status line
 set laststatus=2
 
@@ -273,7 +274,20 @@ map <leader>sa :%s/
 map <leader>bd :g/^$/d<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Find and Replace
+" => Pathogen!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NerdTree!
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>tree :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-notes
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:let g:notes_directories = [ '~/Dropbox/vim-notes', '~/Documents/vim-notes']
+:let g:notes_suffix = '.txt'
+vmap <Leader>nt :NoteFromSelectedText<CR>
+nmap <Leader>nn :Note
+nmap <leader>nr :RecentNotes<CR>
