@@ -148,7 +148,7 @@ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i 
 inoremap { {<CR>}<Esc>O<TAB>
-autocmd Syntax html,viminoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
 inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>
 inoremap } <c-r>=ClosePair('}')<CR>
