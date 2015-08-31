@@ -163,7 +163,6 @@ function ClosePair(char)
   endif
 endfunction
 
-
 function CloseBracket()
   if match(getline(line('.') + 1), '\s*}') < 0
     return "\<CR>}"
@@ -186,7 +185,6 @@ function QuoteDelim(char)
     return a:char.a:char."\<Esc>i"
   endif
 endfunction
-
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -231,6 +229,7 @@ inoremap <c-k> <Esc>:m .-2<CR>==gi
 vnoremap <c-j> :m '>+1<CR>gv=gv
 vnoremap <c-k> :m '<-2<CR>gv=gv
 
+" Indenting with <Tab>
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 vnoremap <Tab> >gv
@@ -274,6 +273,13 @@ map <leader>sa :%s/
 map <leader>bd :g/^$/d<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Copy and Paste 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap <leader>c :w !pbcopy<cr><cr>
+map <leader>cc :%w !pbcopy<cr><cr>
+map <leader>v :r !pbpaste<cr><cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pathogen!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
@@ -288,6 +294,6 @@ map <leader>tree :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :let g:notes_directories = [ '~/Dropbox/vim-notes', '~/Documents/vim-notes']
 :let g:notes_suffix = '.txt'
-vmap <Leader>nt :NoteFromSelectedText<CR>
-nmap <Leader>nn :Note
-nmap <leader>nr :RecentNotes<CR>
+vmap <Leader>notet :NoteFromSelectedText<CR>
+nmap <Leader>noten :Note
+nmap <leader>noter :RecentNotes<CR>
