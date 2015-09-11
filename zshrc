@@ -17,3 +17,6 @@ ${fg_lgreen}%n@${at_underl}%m${at_underloff}${fg_white}[${fg_cyan}%~${fg_white}]
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# vmail
+export VMAIL_VIM=mvim

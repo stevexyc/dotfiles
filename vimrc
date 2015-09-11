@@ -59,6 +59,7 @@ set smartcase
 
 " Highlight search results
 set hlsearch
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -147,8 +148,8 @@ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i 
-inoremap { {<CR>}<Esc>O<TAB>
-autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+inoremap { {}<Esc>i 
+autocmd Syntax html,vim,php inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
 inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>
 inoremap } <c-r>=ClosePair('}')<CR>
@@ -295,5 +296,6 @@ map <leader>tree :NERDTreeToggle<CR>
 :let g:notes_directories = [ '~/Dropbox/vim-notes', '~/Documents/vim-notes']
 :let g:notes_suffix = '.txt'
 vmap <Leader>notet :NoteFromSelectedText<CR>
-nmap <Leader>noten :Note
+nmap <Leader>nn :Note
 nmap <leader>noter :RecentNotes<CR>
+
